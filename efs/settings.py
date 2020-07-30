@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -138,6 +139,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL ='/media/'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL='/login'
@@ -149,3 +156,4 @@ EMAIL_HOST_USER = 'adapanaveena2526@gmail.com'
 EMAIL_HOST_PASSWORD = 'P@$$wrd1'
 DEFAULT_FROM_EMAIL = 'test team <adapanaveena2526@gmail.com>'
 
+django_heroku.settings(locals())
