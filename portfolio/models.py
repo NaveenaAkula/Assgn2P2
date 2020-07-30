@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django.utils import timezone
-# import requests
+import requests
 
 # Create your models here.
 # from django.utils.decorators import method_decorator

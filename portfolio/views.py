@@ -13,11 +13,10 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.db.models import Sum
 from django.http import HttpResponse
-# from .utils import render_to_pdf
+from .utils import render_to_pdf
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# from .serializers import CustomerSerializer
-
+from .serializers import CustomerSerializer
 
 
 # List at the end of the views.py
@@ -31,6 +30,7 @@ class CustomerList(APIView):
 
 
 now = timezone.now()
+
 
 #
 def home(request):
@@ -79,6 +79,7 @@ def customer_edit(request, pk):
         # edit
         form = CustomerForm(instance=customer)
     return render(request, 'portfolio/customer_edit.html', {'form': form})
+
 
 @login_required
 def customer_delete(request, pk):
@@ -341,24 +342,24 @@ def donut_chart(request, pk):
     Total = stock_result + investment_result
     INR_Total = INR_value_stock + INR_value_investment
 
-    return render(request, 'portfolio/piechart.html', { 'customer': customer,
-                                                        'customers': customers,
-                                                        'investments': investments,
-                                                        'stocks': stocks,
-                                                        'sum_acquired_value': sum_acquired_value,
-                                                        'sum_recent_value': sum_recent_value,
-                                                        'stock_result': stock_result,
-                                                        'sum_current_stocks_value': sum_current_stocks_value,
-                                                        'sum_of_initial_stock_value': sum_of_initial_stock_value,
-                                                        'sum_current_investment_value': sum_current_investment_value,
-                                                        'sum_of_initial_investment_value': sum_of_initial_investment_value,
-                                                        'investment_result': investment_result,
-                                                        'INR_value_stock': INR_value_stock,
-                                                        'INR_value_investment': INR_value_investment,
-                                                        'Total_current_investments': Total_current_investments,
-                                                        'Total_initial_investmensts': Total_initial_investmensts,
-                                                        'INR_Total': INR_Total,
-                                                        'Total': Total});
+    return render(request, 'portfolio/piechart.html', {'customer': customer,
+                                                       'customers': customers,
+                                                       'investments': investments,
+                                                       'stocks': stocks,
+                                                       'sum_acquired_value': sum_acquired_value,
+                                                       'sum_recent_value': sum_recent_value,
+                                                       'stock_result': stock_result,
+                                                       'sum_current_stocks_value': sum_current_stocks_value,
+                                                       'sum_of_initial_stock_value': sum_of_initial_stock_value,
+                                                       'sum_current_investment_value': sum_current_investment_value,
+                                                       'sum_of_initial_investment_value': sum_of_initial_investment_value,
+                                                       'investment_result': investment_result,
+                                                       'INR_value_stock': INR_value_stock,
+                                                       'INR_value_investment': INR_value_investment,
+                                                       'Total_current_investments': Total_current_investments,
+                                                       'Total_initial_investmensts': Total_initial_investmensts,
+                                                       'INR_Total': INR_Total,
+                                                       'Total': Total});
 
 
 @login_required
@@ -406,4 +407,3 @@ def mutualfund_delete(request, pk):
     mutualfund = get_object_or_404(MutualFund, pk=pk)
     mutualfund.delete()
     return redirect('portfolio:mutualfund_list')
-
