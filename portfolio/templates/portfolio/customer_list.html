@@ -1,4 +1,4 @@
-
+{% extends 'portfolio/base.html' %}
 {% block content %}
 
     <html>
@@ -65,7 +65,8 @@
                            class="btn btn-danger">Delete</a>
 
                     </td>
-                    
+                    <td><a href="{% url 'portfolio:portfolio' pk=customer.pk %}"
+                           class="btn btn-primary">Portfolio</a></td>
 
                 </tr>
             {% endfor %}

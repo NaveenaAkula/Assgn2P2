@@ -25,7 +25,7 @@ SECRET_KEY = '%n8&yp5)mw1r_@)l2-0h=tdf3$2c%%_uo0k-cxpn)re)gp*pcl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,8 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portfolio',
     'crispy_forms',
+    'rest_framework',
+    'mathfilters',
+    'django.contrib.humanize',
+    'users',
+    'chartjs',
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -121,4 +127,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL='/login'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'adapanaveena2526@gmail.com'
+EMAIL_HOST_PASSWORD = 'P@$$wrd1'
+DEFAULT_FROM_EMAIL = 'test team <adapanaveena2526@gmail.com>'
 
