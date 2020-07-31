@@ -91,10 +91,13 @@ class Stock(models.Model):
         return float(self.current_stock_price()) * float(self.shares)
 
     def currency_rate(self):
-        main_api = 'https://free.currconv.com/api/v7/convert?q=INR_PHP&compact=ultra&apiKey=9d88d44ed0b4895bcb88'
-        json_data = requests.get(main_api).json()
-        value = float(json_data["INR_PHP"])
-        return value
+
+        url='https://v6.exchangerate-api.com/v6/8ec0ea3fc8a7dae5e6ae2918/latest/USD'
+        # main_api = 'https://free.currconv.com/api/v7/convert?q=INR_PHP&compact=ultra&apiKey=9d88d44ed0b4895bcb88'
+        json_data = requests.get(url).json()
+        open_price = float(json_data["conversion_rates"]["INR"])
+        share_value = open_price
+        return share_value
 
 
 Categories = [("Equity Funds", "Equity Funds"), ("Bond Funds", "Bond Funds"),
